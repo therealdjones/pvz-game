@@ -1,34 +1,28 @@
-let canvas,ctx;
-let entities=[];
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
 
-function initGame(){
-canvas=document.getElementById("game");
-ctx=canvas.getContext("2d");
-
-entities.push({
-type:"zombie",
-x:800,
-y:200,
-speed:0.3,
-hp:100,
-anim:new Animation([loadImg("../assets/zombies/z1.png")],10)
-});
-
-loop();
-}
+let zombies=[{x:800,y:200,hp:100}];
+let plants=[{x:200,y:200}];
 
 function update(){
-entities.forEach(e=>{
-if(e.anim) e.anim.update();
-if(e.type==="zombie") e.x-=e.speed;
+zombies.forEach(z=>{
+z.x-=0.3;
 });
 }
 
 function render(){
 ctx.clearRect(0,0,900,500);
-entities.forEach(e=>{
+
+// plants
+ctx.fillStyle="green";
+plants.forEach(p=>{
+ctx.fillRect(p.x,p.y,40,40);
+});
+
+// zombies
 ctx.fillStyle="black";
-ctx.fillRect(e.x,e.y,40,60);
+zombies.forEach(z=>{
+ctx.fillRect(z.x,z.y,40,60);
 });
 }
 
@@ -37,3 +31,5 @@ update();
 render();
 requestAnimationFrame(loop);
 }
+
+loop();
