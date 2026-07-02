@@ -1,0 +1,10 @@
+body{
+background:#1b3d2f;
+color:white;
+text-align:center;
+font-family:sans-serif;
+}
+canvas{
+background:#2f6b3d;
+border:2px solid #000;
+}
